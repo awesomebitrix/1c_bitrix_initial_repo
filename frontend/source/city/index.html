@@ -1,0 +1,457 @@
+{% extends '../layout.html' %}
+{% block content %}
+
+  <div block="pane" mods="hero wide" style="background-image: url('/frontend/images/026.png');">
+    <div block="c">
+      <div block="pane" elem="content">
+        <div block="wysiwyg">
+          <h2>Петропавловск–Камчатский</h2>
+          <span style="font-size: 20px">Тотальный диктант в Петропавловск-Камчатском, Щербиново и Лукашево</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div block="pane">
+    <div block="c">
+      <div block="pane" elem="content">
+        <div block="r" mods="s:m">
+          <div elem="c" mods="s:6">
+            <div block="wysiwyg" mods="octave">
+              <h5>Дорогие друзья!</h5>
+              <span style="font-size:20px">Сезон Тотального диктанта в 2015 году закрыт, и мы хотим поблагодарить каждого, кто пришел, не побоялся и написал диктант. А теперь штаб ТД отправляется на заслуженные, как мы надеемся, каникулы. По всем имеющимся вопросам можно обращаться по ссылке внизу. Увидимся в апреле 2016 года.</span>
+              <span style="font-size:20px">С любовью и безразмерной благодарностью,<br>Штаб ТД в Петропавловске-Камчатском.</span>
+            </div>
+          </div>
+          <div elem="c" mods="s:6">
+            <div block="wysiwyg">
+              <h5>Вопросы и ответы</h5>
+            </div>
+            <div block="faqs">
+              {% for faq in faqs %}
+                <div elem="item">
+                  <a block="link" mods="b:s" href="#">
+                    <span block="link" elem="text">{{faq}}</span>
+                  </a>
+                </div>
+              {% endfor %}
+              <div elem="item">
+                <a block="link" mods="b:s t:r" href="#">
+                  <span block="link" elem="text">Другие вопросы и ответы</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div block="pane" elem="bottom" mods="lightgray">
+        <div block="r" mods="s:m">
+          <div elem="c" mods="s:4">
+            <div block="wysiwyg">
+              <span elem="meta">Следите за новостями</span>
+              <span></span>
+            </div>
+            <div block="social" mods="s:s">
+              <div block="r" mods="jcc">
+                <div elem="c">
+                  <a block="social" elem="button" mix="block:icon mods:[vk]" href="#"></a>
+                </div>
+                <div elem="c">
+                  <a block="social" elem="button" mix="block:icon mods:[facebook]" href="#"></a>
+                </div>
+                <div elem="c">
+                  <a block="social" elem="button" mix="block:icon mods:[twitter]" href="#"></a>
+                </div>
+                <div elem="c">
+                  <a block="social" elem="button" mix="block:icon mods:[google]" href="#"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div elem="c" mods="s:4">
+            <div block="wysiwyg">
+              <span elem="meta">Электронная почта</span>
+              <span><a href="mailto:mariya.rovinskaya@totaldict.ru" target="_blank">mariya.rovinskaya@totaldict.ru</a></span>
+            </div>
+          </div>
+          <div elem="c" mods="s:4">
+            <div block="wysiwyg">
+              <span elem="meta">Звоните с 9 до 18 по будням</span>
+              <span>+7 999 420-39-50</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div block="pane">
+    <div block="c">
+      <div block="pane" elem="top" mods="decorated">
+        <div block="r" mods="aic">
+          <div elem="c">
+            <div block="pane" elem="name">Городской блог</div>
+          </div>
+          <div elem="c" mods="r">
+            <div block="wysiwyg">
+              <span style="font-size: 20px;">14 записей</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div block="pane" elem="content">
+        <div block="r" mods="s:m">
+          <div elem="c" mods="s:8">
+            <div block="wysiwyg" mods="octave">
+              <span style="font-size: 14px" elem="meta">6 мая</span>
+              <h4>Работы и сертификаты</h4>
+            </div>
+            <div block="wysiwyg" mods="octave">
+              <span style="font-size:20px">Дорогие друзья!</span>
+              <span style="font-size:20px">Получить работы и сертификаты  можно будет 12 мая, в субботу, в РГГУ в 17:00 (ул. Чаянова, 15, ауд. 250).</span>
+              <span style="font-size:20px">Все участники Тотального диктанта, кто прислал нам предварительную заявку (зарегистрировался) смогут получить свою работу и сертификат.</span>
+            </div>
+          </div>
+          <div elem="c" mods="s:4">
+            <div block="wysiwyg" mods="octave">
+              <span style="font-size: 14px" elem="meta">Расскажите друзьям:</span>
+            </div>
+            <div block="social" mods="s:s sepia" style="margin-top: .5rem;">
+              <div block="r">
+                <div elem="c">
+                  <a block="social" elem="button" mix="block:icon mods:[vk]" href="#"></a>
+                </div>
+                <div elem="c">
+                  <a block="social" elem="button" mix="block:icon mods:[facebook]" href="#"></a>
+                </div>
+                <div elem="c">
+                  <a block="social" elem="button" mix="block:icon mods:[twitter]" href="#"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div block="pane" elem="bottom">
+        <a block="link" mods="t:p" href="#">
+          <span elem="text">Показать все записи</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div block="pane">
+    <div block="c">
+      <div block="pane" elem="top" mods="decorated">
+        <div block="pane" elem="name">14 площадок</div>
+      </div>
+      <div block="pane" elem="content" mods="wide">
+        <table block="pane-t">
+          <tr elem="r">
+            <td elem="c" mods="ab" style="width: 600px">
+              <div block="wysiwyg">
+                <span elem="meta" style="font-size: 14px">ул. Бохняка, д. 33</span>
+                <span style="font-size: 20px">Библиотека «Дом А.Ф. Лосева»</span>
+              </div>
+              <div block="tags" mix="block:r">
+                <div elem="item" mix="block:r elem:c">
+                  <div block="tags-block">
+                    <a elem="button" href="#">Нужен паспорт</a>
+                  </div>
+                </div>
+                <div elem="item" mix="block:r elem:c">
+                  <div block="tags-block">
+                    <a elem="button" href="#">Без столов</a>
+                  </div>
+                </div>
+                <div elem="item" mix="block:r elem:c">
+                  <div block="tags-block">
+                    <a elem="button" href="#">Дополнительная информация</a>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td elem="c" mods="ab">
+              <div block="lecturer-block">
+                <div elem="image">
+                  <img src="/frontend/images/027.png" alt="" />
+                </div>
+                <div elem="content">
+                  <div elem="label">Диктор</div>
+                  <div block="wysiwyg">
+                    <span>Константин Кедров</span>
+                    <span>поэт, философ, литературный критик</span>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td elem="c" mods="at">
+              <a block="button" mods="d3" href="#">
+                <span elem="text">Зарегистрироваться</span>
+              </a>
+              <div block="wysiwyg" style="margin-top: 8px;">
+                <span elem="meta" style="font-size:14px">Осталось 12 мест</span>
+              </div>
+            </td>
+          </tr>
+          <tr elem="r">
+            <td elem="c" mods="ab">
+              <div block="wysiwyg">
+                <span elem="meta" style="font-size: 14px">Лебедянская, д. 24, корп. 2 (Царицыно)</span>
+                <span style="font-size: 20px">Библиотека киноискусства им. С.М. Эйзенштейна</span>
+              </div>
+              <div block="tags" mix="block:r">
+                <div elem="item" mix="block:r elem:c">
+                  <div block="tags-block">
+                    <a elem="button" href="#">Нужен паспорт</a>
+                  </div>
+                </div>
+                <div elem="item" mix="block:r elem:c">
+                  <div block="tags-block">
+                    <a elem="button" href="#">Дополнительная информация</a>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td elem="c" mods="ab">
+              <div block="lecturer-block">
+                <div elem="image">
+                  <img src="/frontend/images/027.png" alt="" />
+                </div>
+                <div elem="content">
+                  <div elem="label">Диктор</div>
+                  <div block="wysiwyg">
+                    <span>Константин Кедров</span>
+                    <span>поэт, философ, литературный критик</span>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td elem="c" mods="at">
+              <a block="button" mods="d3" href="#">
+                <span elem="text">Зарегистрироваться</span>
+              </a>
+              <div block="wysiwyg" style="margin-top: 8px;">
+                <span elem="meta" style="font-size:14px">Открытая регистрация</span>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div block="pane" elem="bottom" mix="block:r">
+        <a block="link" mods="t:p" href="#">
+          <span elem="text">Показать все площадки</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+  <div block="pane">
+    <div block="c">
+      <div block="pane" elem="top" mods="decorated">
+        <div block="pane" elem="name">Мероприятия в Петропавловске–Камчатском</div>
+      </div>
+      <div block="pane" elem="content" mods="wide">
+        <table block="pane-t">
+          <tr elem="r">
+            <td elem="c" mods="ab" style="width: 600px">
+              <div block="wysiwyg">
+                <span style="font-size: 20px"><b>12 марта</b> Первая очная консультация участников «Тотального диктанта», которые проводят профессора Дальневосточного государственного университета</span>
+              </div>
+            </td>
+            <td elem="c" mods="ab">
+              <div block="wysiwyg">
+                <span elem="meta" style="font-size: 14px">ул. Бохняка, д. 33</span>
+                <span style="font-size: 20px">Библиотека «Дом А.Ф. Лосева»</span>
+              </div>
+              <div block="tags" mix="block:r">
+                <div elem="item" mix="block:r elem:c">
+                  <div block="tags-block">
+                    <a elem="button" href="#">Требуется запись</a>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td elem="c" mods="at">
+              <a block="button" mods="d3" href="#">
+                <span elem="text">Узнать больше</span>
+              </a>
+            </td>
+          </tr>
+          <tr elem="r">
+            <td elem="c" mods="ab">
+              <div block="wysiwyg">
+                <span style="font-size: 20px"><b>17 марта</b> Русский язык по пятницам. Подготовка к «Тотальному диктанту — 2016»</span>
+              </div>
+            </td>
+            <td elem="c" mods="ab">
+              <div block="wysiwyg">
+                <span elem="meta" style="font-size: 14px">Лебедянская, д. 24, корп. 2 (Царицыно)</span>
+                <span style="font-size: 20px">Библиотека киноискусства им. С.М. Эйзенштейна</span>
+              </div>
+            </td>
+            <td elem="c" mods="at">
+              <a block="button" mods="d3" href="#">
+                <span elem="text">Узнать больше</span>
+              </a>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div block="pane" elem="bottom" mix="block:r">
+        <a block="link" mods="t:p t:r" href="#">
+          <span elem="text">Календарь мероприятий</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div block="pane">
+    <div block="c">
+      <div block="pane" elem="top">
+        <div block="pane" elem="name">Новости</div>
+      </div>
+      <div block="pane" elem="content">
+        <div block="r" mods="s:l">
+          <div elem="c" mods="s:3">
+            <a block="wysiwyg" href="#">
+              <span elem="meta" style="font-size:14px">6 мая</span>
+              <span>Церемония награждения в Петропавловске-Камчатском</span>
+            </a>
+          </div>
+          <div elem="c" mods="s:3">
+            <a block="wysiwyg" href="#">
+              <span elem="meta" style="font-size:14px">6 мая</span>
+              <span>Результаты «Тотального диктанта – 2016» в Петропавловске–Камчатском. Сводная статистика региона</span>
+            </a>
+          </div>
+          <div elem="c" mods="s:3">
+            <a block="wysiwyg" href="#">
+              <span elem="meta" style="font-size:14px">6 мая</span>
+              <span>Тотальный диктант 2015 в Петропавловске-Камчатском состоялся!</span>
+            </a>
+          </div>
+          <div elem="c" mods="s:3">
+            <a block="wysiwyg" href="#">
+              <span elem="meta" style="font-size:14px">6 мая</span>
+              <span>Итоги конкурса сочинений - 2015</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div block="pane" elem="bottom">
+        <a block="link" mods="t:p t:r" href="#">
+          <span elem="text">Все новости</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  {% include "../partials/gallery.html" with context only %}
+
+  <div block="pane">
+    <div block="c">
+      <div block="pane" elem="top">
+        <div block="pane" elem="name">Штаб ТД в Петропавловске–Камчатском</div>
+      </div>
+      <div block="pane" elem="content">
+        <div block="r" mods="s:l">
+          <div elem="c" mods="s:6">
+            <span block="persons-block">
+              <span block="r" mods="aic">
+                <span elem="c">
+                  <span block="persons-block" elem="image">
+                    <img src="/frontend/images/025.png" alt="">
+                  </span>
+                </span>
+                <span elem="c">
+                  <span block="wysiwyg">
+                    <span>Анастасия Сухомлинова</span>
+                    <span style="font-size:14px" elem="meta">Координатор по работе со СМИ</span>
+                  </span>
+                </span>
+              </span>
+            </span>
+            <span block="persons-block">
+              <span block="r" mods="aic">
+                <span elem="c">
+                  <span block="persons-block" elem="image">
+                    <img src="/frontend/images/025.png" alt="">
+                  </span>
+                </span>
+                <span elem="c">
+                  <span block="wysiwyg">
+                    <span>Анастасия Сухомлинова</span>
+                    <span style="font-size:14px" elem="meta">Координатор по работе со СМИ</span>
+                  </span>
+                </span>
+              </span>
+            </span>
+            <span block="persons-block">
+              <span block="r" mods="aic">
+                <span elem="c">
+                  <span block="persons-block" elem="image">
+                    <img src="/frontend/images/025.png" alt="">
+                  </span>
+                </span>
+                <span elem="c">
+                  <span block="wysiwyg">
+                    <span>Анастасия Сухомлинова</span>
+                    <span style="font-size:14px" elem="meta">Координатор по работе со СМИ</span>
+                  </span>
+                </span>
+              </span>
+            </span>
+          </div>
+          <div elem="c" mods="s:6">
+            <span block="persons-block">
+              <span block="r" mods="aic">
+                <span elem="c">
+                  <span block="persons-block" elem="image">
+                    <img src="/frontend/images/025.png" alt="">
+                  </span>
+                </span>
+                <span elem="c">
+                  <span block="wysiwyg">
+                    <span>Алиса Алексеева</span>
+                    <span style="font-size:14px" elem="meta">Координатор площадок</span>
+                  </span>
+                </span>
+              </span>
+            </span>
+            <span block="persons-block">
+              <span block="r" mods="aic">
+                <span elem="c">
+                  <span block="persons-block" elem="image">
+                    <img src="/frontend/images/025.png" alt="">
+                  </span>
+                </span>
+                <span elem="c">
+                  <span block="wysiwyg">
+                    <span>Алиса Алексеева</span>
+                    <span style="font-size:14px" elem="meta">Координатор площадок</span>
+                  </span>
+                </span>
+              </span>
+            </span>
+            <a block="persons-block" mods="join" href="#">
+              <span block="r" mods="aic">
+                <span elem="c">
+                  <span block="persons-block" elem="image">
+                    <span class="icon icon_add-user"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span></span>
+                  </span>
+                </span>
+                <span elem="c">
+                  <span block="wysiwyg">
+                    <span>Присоединиться к команде</span>
+                  </span>
+                </span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% include "../partials/sponsors.html" with context only %}
+{% endblock %}

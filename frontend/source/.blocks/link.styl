@@ -1,0 +1,40 @@
+.link
+  color #1454e5
+  cursor pointer
+  transition .25s ease
+
+  &__meta
+    color #95928c
+    margin-right 16px
+
+  &__icon
+    margin-right 4px
+    vertical-align middle
+
+  &__badge
+    font-size 12px
+    font-weight 700
+    display inline-block
+    background #bf0000
+    width 18px
+    text-align center
+    border-radius 50%
+    padding 4px 0 2px
+    color #fff
+
+  &_type_p
+  &_tp
+  &_t_p
+  &_type_pseudo
+    color inherit
+
+  &_t_r
+    &::after
+      content '→'
+      font-family Arial, sans-serif
+
+  &_b_s &__text
+    border-bottom 1px solid
+
+  &_b_d &__text
+    border-bottom 1px dashed

@@ -1,0 +1,98 @@
+.c
+  width 1170px
+  margin-left auto
+  margin-right auto
+  padding-left 15px
+  padding-right 15px
+
+.f
+  &::after
+    content ''
+    display table
+    clear both
+.r
+  display flex
+  flex-wrap wrap
+
+.r
+  &__c
+    min-height 1px
+
+    &_s_2
+      width (2/12) * 100%
+
+    &_s_2_4
+      width (2.4/12) * 100%
+
+    &_s_3
+      width (3/12) * 100%
+
+    &_s_4
+      width (4/12) * 100%
+
+    &_s_6
+      width (6/12) * 100%
+
+    &_s_8
+      width (8/12) * 100%
+
+    &_r
+      margin-left auto
+
+    &_ac
+      margin-left auto
+      margin-right auto
+
+  // modifier size:small
+  &_sm
+  &_s_s
+    margin-left -10px
+    margin-right -10px
+
+  &_sm > &__c
+  &_s_s > &__c
+    padding-left 10px
+    padding-right 10px
+
+  // modifier size:medium
+  &_md
+  &_s_m
+    margin-left -15px
+    margin-right -15px
+
+  &_md > &__c
+  &_s_m > &__c
+    padding-left 15px
+    padding-right 15px
+
+  &_lg
+  &_s_l
+    margin-left -20px
+    margin-right -20px
+
+  &_lg > &__c
+  &_s_l > &__c
+    padding-left 20px
+    padding-right 20px
+
+  &_aic
+    align-items center
+  &_aib
+    align-items baseline
+
+  &_jcc
+    justify-content center
+  &_jcr
+    justify-content flex-end
+
+  @media screen and (max-width: 1000px)
+    &_l_2
+      width 50%
+
+
+.f
+  display flex
+  flex-wrap wrap
+
+  &__c
+    float left

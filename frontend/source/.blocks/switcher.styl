@@ -1,0 +1,41 @@
+.switcher
+  cursor default
+  user-select none
+
+  &__control
+    display none
+
+  &__label
+    cursor pointer
+    font-size 14px
+
+    input:checked + span
+      color #1454e5
+
+  &__box
+    cursor pointer
+    position relative
+    display inline-block
+    vertical-align middle
+    width 40px
+    height 22px
+    border-radius 11px
+    background #1454e5
+    margin 0 4px
+
+    &::before
+      content ''
+      position absolute
+      left 0
+      top 50%
+      margin -9px 2px 0
+      border-radius 50%
+      width 18px
+      height 18px
+      box-shadow -0.5px 0.866px 2px 0px rgba(0, 35, 87, 0.4),-2.5px 4.33px 12px 0px rgba(0, 35, 87, 0.2)
+      background #fff
+      transform translate3d(0, 0, 0)
+      transition .25s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+
+  &_off &__box::before
+    transform translate3d(100%, 0, 0)

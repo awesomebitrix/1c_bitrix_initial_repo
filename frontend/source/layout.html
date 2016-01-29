@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/frontend/stylesheets/reset.min.css">
+    <link rel="stylesheet" href="/frontend/stylesheets/fonts.min.css">
+    <link rel="stylesheet" href="/frontend/stylesheets/icomoon.min.css">
+    <link rel="stylesheet" href="/frontend/stylesheets/jquery.magnific-popup.min.css">
+    <link rel="stylesheet" href="/frontend/stylesheets/application.min.css">
+    <link rel="stylesheet" href="/frontend/stylesheets/application.blocks.min.css">
+    <script src="/frontend/javascripts/fontsmoothie.min.js"></script>
+    <script src="/frontend/javascripts/angular.min.js"></script>
+    <script src="/frontend/javascripts/angular-route.min.js"></script>
+  </head>
+  <body>
+    {% include "./header.html" with context only %}
+    {% block content %}{% endblock %}
+    {% include "./footer.html" with context only %}
+    <div id="locations" block="window" mods="decorated" class="mfp-hide">
+      <a elem="close" mix="block:icon mods:[close], block:js-popup-close" href="#"></a>
+      <div elem="topbar">
+        <a href="#" elem="logo" mix="block:icon mods:[logo]">
+          <span class="path1"></span><span class="path2"></span>
+        </a>
+      </div>
+      <div elem="container" ng-controller="SearchController">
+        <form action="" block="location">
+          <div elem="search" mix="block:search">
+            <input block="search" elem="control" type="text" ng-model="query" ng-change="search()">
+            <div block="search-actions" mix="block:r mods:[s:m]">
+              <div elem="item" mix="block:r elem:c">
+                <a elem="icon" mix="block:icon mods:[geo]" href="#"></a>
+              </div>
+              <div elem="item" mix="block:r elem:c">
+                <a elem="icon" mix="block:icon mods:[search]" href="#"></a>
+              </div>
+            </div>
+            <div block="search-results" style="display:none">
+              <div elem="item">
+                <span>Пенза</span>
+                <span elem="meta">Республика Карелия, Россия</span>
+              </div>
+              <div elem="item">
+                <span>Первоуральск</span>
+                <span elem="meta">Республика Карелия, Россия</span>
+              </div>
+              <div elem="item">
+                <span>Пермь</span>
+                <span elem="meta">Республика Карелия, Россия</span>
+              </div>
+              <div elem="item">
+                <span>Петрозаводск</span>
+                <span elem="meta">Республика Карелия, Россия</span>
+              </div>
+              <div elem="item" mods="match">
+                <span>Петропавловск-Камчатский</span>
+                <span elem="meta">Камчатский край, Россия</span>
+              </div>
+            </div>
+          </div>
+          <div elem="tabs" mix="block:tabs, block:r mods:[s:m jcc]">
+            <div block="tabs" elem="item" mix="block:r elem:c" ng-repeat="continent in continets">
+              <label block="tabs" elem="link" mix="block:link mods:[b:s]" ng-class="{link_t_p: continent.name == selectedContinent}">
+                <input type="radio" ng-model="$parent.selectedContinent" ng-value="continent.name" class="ng-hide">
+                <span block="link" elem="text" ng-bind="continent.name"></span>
+              </label>
+            </div>
+            {# <div block="tabs" elem="item" mix="block:r elem:c">
+              <label block="tabs" elem="link" mix="block:link mods:[b:s]">
+                <input type="radio" ng-model="continent" value="Россия">
+                <span block="link" elem="text">Россия</span>
+              </label>
+            </div>
+            <div block="tabs" elem="item" mix="block:r elem:c">
+              <label block="tabs" elem="link" mix="block:link mods:[b:s]">
+                <input type="radio" ng-model="continent" value="Европа">
+                <span block="link" elem="text">Европа</span>
+              </label>
+            </div>
+            <div block="tabs" elem="item" mix="block:r elem:c">
+              <label block="tabs" elem="link" mix="block:link mods:[b:s]">
+                <input type="radio" ng-model="continent" value="Азия">
+                <span block="link" elem="text">Азия</span>
+              </label>
+            </div>
+            <div block="tabs" elem="item" mix="block:r elem:c">
+              <label block="tabs" elem="link" mix="block:link mods:[b:s]">
+                <input type="radio" ng-model="continent" value="Северная Америка">
+                <span block="link" elem="text">Северная Америка</span>
+              </label>
+            </div>
+            <div block="tabs" elem="item" mix="block:r elem:c">
+              <label block="tabs" elem="link" mix="block:link mods:[b:s]">
+                <input type="radio" ng-model="continent" value="Южная Америка">
+                <span block="link" elem="text">Южная Америка</span>
+              </label>
+            </div>
+            <div block="tabs" elem="item" mix="block:r elem:c">
+              <label block="tabs" elem="link" mix="block:link mods:[b:s]">
+                <input type="radio" ng-model="continent" value="Африка">
+                <span block="link" elem="text">Африка</span>
+              </label>
+            </div>
+            <div block="tabs" elem="item" mix="block:r elem:c">
+              <label block="tabs" elem="link" mix="block:link mods:[b:s]">
+                <input type="radio" ng-model="continent" value="Австралия и Океания">
+                <span block="link" elem="text">Австралия и Океания</span>
+              </label>
+            </div> #}
+          </div>
+          <div elem="toolbar" mix="block:toolbar, block:r mods:[s:s aib]">
+            <div block="toolbar" elem="item" mix="block:r elem:c">
+              <div block="location" elem="current" ng-bind="selectedContinent"></div>
+            </div>
+            <div block="toolbar" elem="item" mix="block:r elem:c">
+              <div block="switcher">
+                <label elem="label">
+                  <input elem="control" type="radio" ng-model="popular" ng-value="true" checked="">
+                  <span>Популярные города</span>
+                </label>
+                <span elem="box"></span>
+                <label elem="label">
+                  <input elem="control" type="radio" ng-model="popular" ng-value="false">
+                  <span>Все города</span>
+                </label>
+              </div>
+              <p ng-bind="popular"></p>
+            </div>
+          </div>
+          <div elem="cities" mix="block:r">
+            {% for location in locations %}
+              <div block="r" elem="c" mods="s:2">
+                {% for instance in location %}
+                  <a block="location" elem="city" href="#">{{instance}}</a>
+                {% endfor %}
+              </div>
+            {% endfor %}
+          </div>
+        </form>
+      </div>
+    </div>
+    <div id="menu" block="window" mods="decorated" class="mfp-hide">
+      <a elem="close" mix="block:icon mods:[close], block:js-popup-close" href="#"></a>
+      <div elem="topbar">
+        <a elem="menu-button" mix="block:button mods:[d:1 hovered], block:js-popup-close" href="#menu">
+          <span elem="icon" mix="block:icon mods:[cross]"></span>
+          <span elem="text">Меню</span>
+        </a>
+        <a href="#" elem="logo" mix="block:icon mods:[logo]">
+          <span class="path1"></span><span class="path2"></span>
+        </a>
+      </div>
+      <div elem="container">
+        <form block="search" action="">
+          <input elem="control" type="text">
+          <div block="search-actions" mix="block:r mods:[s:m]">
+            <div elem="item" mix="block:r elem:c">
+              <a elem="icon" mix="block:icon mods:[search]" href="#"></a>
+            </div>
+          </div>
+        </form>
+        <div block="r" mods="aib" mix="block:menu">
+          <div elem="c" mods="s:3">
+            <div block="menu" elem="section">
+              <div elem="name">
+                <a block="link" mods="t:p" href="#">О проекте</a>
+              </div>
+            </div>
+            <div block="menu" elem="section">
+              <div elem="name">
+                <a block="link" mods="t:p" href="#">География диктанта</a>
+              </div>
+            </div>
+            <div block="menu" elem="section">
+              <div elem="name">
+                <a block="link" mods="t:p" href="#">Новости и события</a>
+              </div>
+              <div elem="item">
+                <a block="link" mods="t:p" href="#">Новости и события</a>
+              </div>
+              <div elem="item">
+                <a block="link" mods="t:p" href="#">Публикации</a>
+              </div>
+              <div elem="item">
+                <a block="link" mods="t:p" href="#">Интервью</a>
+              </div>
+              <div elem="item">
+                <a block="link" mods="t:p" href="#">Фото и видео</a>
+              </div>
+            </div>
+            <div block="menu" elem="section">
+              <div elem="name">
+                <a block="link" mods="t:p" href="#">Вопросы и ответы</a>
+              </div>
+            </div>
+          </div>
+          <div elem="c" mods="s:3">
+            <div block="menu" elem="section">
+              <div elem="name">
+                <a block="link" mods="t:p" href="#">
+                  <span elem="text">Тексты диктанта</span>
+                </a>
+              </div>
+              {% for dictant in dictants %}
+                <div elem="item">
+                  <a block="menu-dict" mix="block:link mods:[t:p]" href="#">
+                    <span block="menu-dict" elem="meta">{{dictant.date}}</span>
+                    <span block="menu-dict" elem="author">{{dictant.author}}</span>
+                  </a>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+          <div elem="c" mods="s:3">
+            <div block="menu" elem="section">
+              <div elem="name">
+                <a block="link" mods="t:p" href="#">Подготовка</a>
+              </div>
+              <div elem="item">
+                <a block="link" mods="t:p" href="#">Онлайн-диктанты</a>
+              </div>
+              <div elem="item">
+                <a block="link" mods="t:p" href="#">Интерактивные курсы</a>
+              </div>
+              <div elem="item">
+                <a block="link" mods="t:p" href="#">Мероприятия в городах</a>
+              </div>
+            </div>
+            <div block="menu" elem="section" mods="services">
+              <div elem="name">Сервисы</div>
+              <div elem="item">
+                <a block="link" mods="t:p" href="#">Узнать свой результат</a>
+              </div>
+              <div elem="item">
+                <a block="link" mods="t:p" href="#">Организовать в своем городе</a>
+              </div>
+              <div elem="item">
+                <a block="link" mods="t:p" href="#">Личный кабинет</a>
+              </div>
+              <div elem="item">
+                <a block="link" mods="t:p" href="#">Рабочее место организатора</a>
+              </div>
+            </div>
+          </div>
+          <div elem="c" mods="s:3">
+            <div block="menu" elem="section" mods="social">
+              <div block="social" mods="s:l">
+                <div block="text">
+                  <p elem="p" mods="s:16 type:meta">Присоединяйтесь к нам <br>в социальные сети:</p>
+                </div>
+                <div block="r" mods="s:s">
+                  <div elem="c">
+                    <a block="social" elem="button" mix="block:icon mods:[vk]" href="#"></a>
+                  </div>
+                  <div elem="c">
+                    <a block="social" elem="button" mix="block:icon mods:[facebook]" href="#"></a>
+                  </div>
+                  <div elem="c">
+                    <a block="social" elem="button" mix="block:icon mods:[instagram]" href="#"></a>
+                  </div>
+                  <div elem="c">
+                    <a block="social" elem="button" mix="block:icon mods:[twitter]" href="#"></a>
+                  </div>
+                  <div elem="c">
+                    <a block="social" elem="button" mix="block:icon mods:[youtube]" href="#"></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% block scripts %}
+      <script src="/frontend/javascripts/d3.min.js"></script>
+      <script src="/frontend/javascripts/jquery.min.js"></script>
+      <script src="/frontend/javascripts/jquery.bem.min.js"></script>
+      <script src="/frontend/javascripts/jquery.magnific-popup.min.js"></script>
+      <script src="/frontend/javascripts/application.min.js"></script>
+      <script src="/frontend/javascripts/application.blocks.min.js"></script>
+    {% endblock %}
+  </body>
+</html>
