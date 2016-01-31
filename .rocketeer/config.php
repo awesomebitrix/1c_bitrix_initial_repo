@@ -39,8 +39,8 @@ return [
     'connections'      => [
         'preprod' => [
             'host'      => 'totaldict.de-us.ru',
-            'username'  => 'totaldict_ssh',
-            'password'  => 'totaldict_ssh123123123',
+            'username'  => '',
+            'password'  => '',
             'key'       => '',
             'keyphrase' => '',
             'agent'     => '',
