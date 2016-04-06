@@ -38,7 +38,11 @@ return [
     // and store them locally
     'connections'      => [
         'preprod' => [
-            'host'      => 'totaldict.de-us.ru',
+            // this field may contain port so it's for ssh purposes
+            'host'      => 'www.domain.xxx[:port]',
+            // this field should not contain port. ip address or hostname
+            'hostonly'  => 'www.domain.xxx',
+            'ssh_port'      => 22,
             'username'  => '',
             'password'  => '',
             'key'       => '',
@@ -81,4 +85,26 @@ return [
 
     ],
 
+    // options for database manipulations tasks
+    'local' => [
+        // for windows users only to fix ssh bug. so if u linux user leave this field empty. this string should end with slash
+        'windows_dir_to_rsync_ssh' => 'C:/Users/bfday/Cloud@Mail.Ru/Progs/Portable/cwRsync_5.5.0_x86_Free/bin/',
+        'db' => [
+            'host' => '',
+            'user' => '',
+            'password' => '',
+            'name' => '',
+            'domain_name' => '',
+            // leave empty if available from shell
+            'mysql_utility_dir' => '',
+            // leave empty if available from shell
+            'mysqldump_utility_dir' => '',
+            // from that folder where rocketeer.phar is located
+            'backups_path' => 'web/shared/backups/db',
+            'keep_backups' => 1,
+        ],
+        'files' => [
+            'upload_path' => 'web/shared/upload'
+        ]
+    ],
 ];

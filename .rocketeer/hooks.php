@@ -36,6 +36,10 @@ return [
     ],
 
     // Custom Tasks to register with Rocketeer
-    'custom' => [],
-
+    'custom' => array(
+        'dbpull'    =>  'Rocketeer\Tasks\Databasepuller',
+        'dbapply'   =>  'Rocketeer\Tasks\Databaseapplier',
+        'dbpush'    =>  'Rocketeer\Tasks\Databasepusher',
+        'uppull'    =>  'Rocketeer\Tasks\Uploadspuller',
+    ),
 ];

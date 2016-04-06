@@ -75,4 +75,16 @@ return [
 
     ],
 
+    // options for database manipulations tasks
+    'db' => [
+        'production' => [
+            'host' => '',
+            'user' => '',
+            'password' => '',
+            'name' => '',
+            'backups_path' => 'shared/backups/db',
+            'upload_path' => 'shared/web/upload',
+            'keep_backups' => 2,
+        ]
+    ]
 ];
