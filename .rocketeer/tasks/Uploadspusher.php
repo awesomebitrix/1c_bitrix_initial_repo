@@ -1,7 +1,11 @@
 <?php
+
+namespace Rocketeer\Tasks;
+
+// ToDo: not realised
 class UploadsPush extends \Rocketeer\Abstracts\AbstractTask
 {
-    protected $description = 'Push uploads to remote server';
+    protected $description = 'Pushes uploads to selected remote server';
 
     public function execute()
     {

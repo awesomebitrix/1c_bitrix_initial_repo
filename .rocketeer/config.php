@@ -90,21 +90,21 @@ return [
         // for windows users only to fix ssh bug. so if u linux user leave this field empty. this string should end with slash
         'windows_dir_to_rsync_ssh' => 'C:/Users/bfday/Cloud@Mail.Ru/Progs/Portable/cwRsync_5.5.0_x86_Free/bin/',
         'db' => [
-            'host' => '',
+            'host' => 'localhost',
             'user' => '',
             'password' => '',
             'name' => '',
-            'domain_name' => '',
-            // leave empty if available from shell
-            'mysql_utility_dir' => '',
-            // leave empty if available from shell
-            'mysqldump_utility_dir' => '',
+            'charset' => '',
+            'domain_name' => 'local-intraceuticals.ru',
+            'mysql_path' => 'mysql',
+            'mysqldump_path' => 'mysqldump',
             // from that folder where rocketeer.phar is located
             'backups_path' => 'web/shared/backups/db',
             'keep_backups' => 1,
         ],
         'files' => [
-            'upload_path' => 'web/shared/upload'
+            // upload path relative to rockeeter. directory itself doesn't needed, because it takes name from remote
+            'upload_path' => 'web/shared'
         ]
     ],
 ];

@@ -1,8 +1,10 @@
 <?php
 
+namespace Rocketeer\Tasks;
+
 class Uploadspuller extends \Rocketeer\Abstracts\AbstractTask
 {
-    protected $description = 'Pull uploads from remote server';
+    protected $description = 'Pulls uploads from remote server';
 
     public function execute()
     {
@@ -13,27 +15,32 @@ class Uploadspuller extends \Rocketeer\Abstracts\AbstractTask
 
         $remote_login_user = $this->rocketeer->getOption('config.connections.' . $connection . '.username');
         $remote_login_host = $this->rocketeer->getOption('config.connections.' . $connection . '.hostonly');
-        $remote_login_port = $this->rocketeer->getOption('config.connections.' . $connection . '.port');
+        $remote_login_port = $this->rocketeer->getOption('config.connections.' . $connection . '.ssh_port');
         $remote_upload_path = $this->rocketeer->getOption('remote.db.' . $connection . '.upload_path');
-
         $remote_upload_path = $this->paths->getHomeFolder() . '/' . $remote_upload_path;
+
+        $local_windows_dir_to_rsync_ssh =  $this->rocketeer->getOption('config.local.windows_dir_to_rsync_ssh');
 
         $this->command->info('Pulling uploads');
 
         $env = !empty($_SERVER['HOMEDRIVE']) ? 'windows' : 'linux';
-        $homePath = '';
+        $home_path = '';
         switch ($env) {
             case 'windows':
-                $homePath = $_SERVER['HOMEDRIVE'] . '/' . $_SERVER['HOMEPATH'];
+                $home_path = $_SERVER['HOMEDRIVE'] . '/' . $_SERVER['HOMEPATH'];
                 break;
             case 'linux':
-                $homePath = $_SERVER['HOME'];
+                $home_path = $_SERVER['HOME'];
                 break;
         }
+        
+        $private_key_path = $home_path . "/.ssh/id_rsa";
 
         $this->command->info("Getting backup from remote host ...");
+        $command = "rsync -avzO --rsh='{$local_windows_dir_to_rsync_ssh}ssh -p {$remote_login_port} -i {$private_key_path}' {$remote_login_user}@{$remote_login_host}:{$remote_upload_path} {$local_upload_path}";
+        $this->command->info($command);
         exec(
-            "rsync -avzO --rsh='ssh -p {$remote_login_port} -i {$homePath}/.ssh/id_rsa' {$remote_login_user}@{$remote_login_host}:{$remote_upload_path} {$local_upload_path}"
+            $command
         );
     }
 }

@@ -78,13 +78,15 @@ return [
     // options for database manipulations tasks
     'db' => [
         'production' => [
-            'host' => '',
+            'host' => 'localhost',
             'user' => '',
             'password' => '',
             'name' => '',
+            // relative to application directory backups path
             'backups_path' => 'shared/backups/db',
-            'upload_path' => 'shared/web/upload',
-            'keep_backups' => 2,
+            // relative to application directory remote upload path
+            'upload_path' => 'shared/upload',
+            'keep_backups' => 6,
         ]
     ]
 ];
