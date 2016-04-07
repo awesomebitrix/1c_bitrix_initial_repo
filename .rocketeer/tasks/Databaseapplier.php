@@ -64,11 +64,17 @@ class Databaseapplier extends AbstractTask
         $db = new \PDO("mysql:host=localhost;dbname={$local_db_name};charset={$local_db_charset}", $local_db_user, $local_db_password);
         $result = $db->query("show tables");
         while ($row = $result->fetch(\PDO::FETCH_NUM)) {
-            $this->command->info($row[0]);
             $db->query("DROP TABLE $row[0]");
         }
+
         $this->command->info("Pushing DB to local MySQL DBMS...");
-        $command = "{$local_mysql_path} -u {$local_db_user} -p{$local_db_password} {$local_db_name} < \"{$local_db_backups_path}/{$backup_name}\"";
+        $archiveSuffix = '.tar.gz';
+        if (strpos($backup_name, $archiveSuffix) == strlen($backup_name) - strlen($archiveSuffix)) {
+            $command = "tar -xzOf \"{$local_db_backups_path}/{$backup_name}\" | {$local_mysql_path} -u {$local_db_user} -p{$local_db_password} {$local_db_name}";
+        } else {
+            $command = "{$local_mysql_path} -u {$local_db_user} -p{$local_db_password} {$local_db_name} < \"{$local_db_backups_path}/{$backup_name}\"";
+        }
+
         $this->command->info($command);
         exec($command);
     }

@@ -14,12 +14,12 @@ class Databasepuller extends AbstractTask
         $stage = $this->connections->getStage();
 
         // get options
-        $local_db_user =            $this->rocketeer->getOption('config.local.db.user');
-        $local_db_password =        $this->rocketeer->getOption('config.local.db.password');
-        $local_db_name =            $this->rocketeer->getOption('config.local.db.name');
-        $local_db_backups_path =    $this->rocketeer->getOption('config.local.db.backups_path');
-        $local_keep_backups =       $this->rocketeer->getOption('config.local.db.keep_backups');
-        $local_windows_dir_to_rsync_ssh =  $this->rocketeer->getOption('config.local.windows_dir_to_rsync_ssh');
+        $local_db_user =                    $this->rocketeer->getOption('config.local.db.user');
+        $local_db_password =                $this->rocketeer->getOption('config.local.db.password');
+        $local_db_name =                    $this->rocketeer->getOption('config.local.db.name');
+        $local_db_backups_path =            $this->rocketeer->getOption('config.local.db.backups_path');
+        $local_keep_backups =               $this->rocketeer->getOption('config.local.db.keep_backups');
+        $local_windows_dir_to_rsync_ssh =   $this->rocketeer->getOption('config.local.windows_dir_to_rsync_ssh');
 
         $remote_db_host =           $this->rocketeer->getOption('remote.db.' . $connection . '.host');
         $remote_db_user =           $this->rocketeer->getOption('remote.db.' . $connection . '.user');
@@ -36,9 +36,11 @@ class Databasepuller extends AbstractTask
         $backup_file_name = $backup_prefix . date("Y_m_d_H_i_s");
 
         $local_db_backup_file_path = $local_db_backups_path . '/' . $backup_file_name . '.sql';
+        $local_db_compressed_backup_file_path = $local_db_backup_file_path . '.tar.gz';
 
         $remote_db_backup_directory = $root_directory . '/' . $remote_db_backups_path;
         $remote_db_backup_file_path = $remote_db_backup_directory . '/' . $backup_file_name . '.sql';
+        $remote_db_compressed_backup_file_path = $remote_db_backup_file_path . '.tar.gz';
 
         $env = !empty($_SERVER['HOMEDRIVE']) ? 'windows' : 'linux';
         $home_path = '';
@@ -60,14 +62,18 @@ class Databasepuller extends AbstractTask
         $this->command->info('Doing backup of remote DB...');
         $this->remote->run(array(
             "touch {$remote_db_backup_directory}/{$backup_file_name}.sql",
-            //"rm {$remote_db_backup_directory}/*.sql",
-            'mysqldump --single-transaction --user=' . $remote_db_user . ' --password=' . $remote_db_password . ' --host=' . $remote_db_host . ' ' . $remote_db_name . ' > ' . $remote_db_backup_directory . '/' . $backup_file_name . '.sql'
+            'mysqldump --single-transaction --user=' . $remote_db_user . ' --password=' . $remote_db_password . ' --host=' . $remote_db_host . ' ' . $remote_db_name . ' > ' . $remote_db_backup_directory . '/' . $backup_file_name . '.sql',
+            // compressing result
+            "tar -czvf {$remote_db_compressed_backup_file_path} {$remote_db_backup_file_path}",
+            // remove raw backup
+            "rm {$remote_db_backup_file_path}"
         ));
 
         // for linux
         $this->command->info("Getting backup from remote host ...");
+        $command = "rsync -avz --rsh='{$local_windows_dir_to_rsync_ssh}ssh -p {$remote_login_port} -i {$private_key_path}' {$remote_login_user}@{$remote_login_host}:{$remote_db_compressed_backup_file_path} {$local_db_compressed_backup_file_path}";
         exec(
-            "rsync -avzO --rsh='{$local_windows_dir_to_rsync_ssh}ssh -p {$remote_login_port} -i {$private_key_path}' {$remote_login_user}@{$remote_login_host}:{$remote_db_backup_file_path} {$local_db_backup_file_path}"
+            $command
         );
 
         // remove old local backups
