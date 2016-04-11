@@ -11,7 +11,7 @@ class Uploadspuller extends \Rocketeer\Abstracts\AbstractTask
         $stage = $this->connections->getStage();
         $connection = $this->connections->getConnection();
 
-        $local_upload_path = $this->rocketeer->getOption('config.local.files.upload_path');
+        $local_upload_path = $this->rocketeer->getOption('config.local.files.upload_dest_path');
 
         $remote_login_user = $this->rocketeer->getOption('config.connections.' . $connection . '.username');
         $remote_login_host = $this->rocketeer->getOption('config.connections.' . $connection . '.hostonly');

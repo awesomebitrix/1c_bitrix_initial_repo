@@ -104,7 +104,7 @@ return [
         ],
         'files' => [
             // upload path relative to rockeeter. directory itself doesn't needed, because it takes name from remote
-            'upload_path' => 'web/shared'
+            'upload_dest_path' => 'web/shared'
         ]
     ],
 ];
