@@ -59,7 +59,7 @@ class Databasepuller extends AbstractTask
             $this->command->info('Initializing backup folder');
             $this->remote->run('mkdir -p ' . $remote_db_backup_directory);
         }
-        $this->command->info('Doing backup of remote DB...');
+        $this->command->info('Doing backup of remote DB: ' . "{$remote_db_backup_directory}/{$backup_file_name}.sql");
         $this->remote->run(array(
             "touch {$remote_db_backup_directory}/{$backup_file_name}.sql",
             'mysqldump --single-transaction --user=' . $remote_db_user . ' --password=' . $remote_db_password . ' --host=' . $remote_db_host . ' ' . $remote_db_name . ' > ' . $remote_db_backup_directory . '/' . $backup_file_name . '.sql',
@@ -69,12 +69,17 @@ class Databasepuller extends AbstractTask
             "rm {$remote_db_backup_file_path}"
         ));
 
-        // for linux
-        $this->command->info("Getting backup from remote host ...");
+
+        $this->command->info("Creating backups folder: " . $local_db_backups_path);
+        $options = '';
+        if ($env == 'linux') $options = '-p';
+        $command = "mkdir {$options} $local_db_backups_path";
+        if ($env == 'windows') $command = str_replace('/', '\\', $command);
+        $this->command->info($command);
+        exec($command);
+        $this->command->info("Getting backup from remote host to: " . $local_db_compressed_backup_file_path);
         $command = "rsync -avz --rsh='{$local_windows_dir_to_rsync_ssh}ssh -p {$remote_login_port} -i {$private_key_path}' {$remote_login_user}@{$remote_login_host}:{$remote_db_compressed_backup_file_path} {$local_db_compressed_backup_file_path}";
-        exec(
-            $command
-        );
+        exec($command);
 
         // remove old local backups
         $filesNames = scandir($local_db_backups_path, SCANDIR_SORT_DESCENDING);
