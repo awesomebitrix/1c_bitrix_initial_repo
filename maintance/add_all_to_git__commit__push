@@ -1,5 +1,4 @@
 #!/usr/bin/bash
-pwd
 git add --all
 git commit -m "$1"
 git push
