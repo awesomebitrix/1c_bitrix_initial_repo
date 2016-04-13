@@ -17,21 +17,23 @@ class Databaseapplier extends AbstractTask
         $stage = $this->connections->getStage();
 
         // Set DB & Remote data
-        $local_db_user =            $this->rocketeer->getOption('config.local.db.user');
-        $local_db_password =        $this->rocketeer->getOption('config.local.db.password');
-        $local_db_name =            $this->rocketeer->getOption('config.local.db.name');
-        $local_db_charset =         $this->rocketeer->getOption('config.local.db.charset');
-        $local_db_backups_path =    $this->rocketeer->getOption('config.local.db.backups_path');
-        $local_mysql_path =         $this->rocketeer->getOption('config.local.db.mysql_path');
+        $local_db_user =                    $this->rocketeer->getOption('config.local.db.user');
+        $local_db_password =                $this->rocketeer->getOption('config.local.db.password');
+        $local_db_name =                    $this->rocketeer->getOption('config.local.db.name');
+        $local_db_charset =                 $this->rocketeer->getOption('config.local.db.charset');
+        $local_db_backups_path =            $this->rocketeer->getOption('config.local.db.backups_path');
+        $local_mysql_path =                 $this->rocketeer->getOption('config.local.db.mysql_path');
 
-        $remote_db_host =           $this->rocketeer->getOption('remote.db.' . $connection . '.host');
-        $remote_db_user =           $this->rocketeer->getOption('remote.db.' . $connection . '.user');
-        $remote_db_password =       $this->rocketeer->getOption('remote.db.' . $connection . '.password');
-        $remote_db_name =           $this->rocketeer->getOption('remote.db.' . $connection . '.name');
-        $remote_db_backups_path =   $this->rocketeer->getOption('remote.db.' . $connection . '.backups_path');
-        $remote_login_user =        $this->rocketeer->getOption('config.connections.' . $connection . '.username');
-        $remote_login_host =        $this->rocketeer->getOption('config.connections.' . $connection . '.hostonly');
-        $remote_login_port =        $this->rocketeer->getOption('config.connections.' . $connection . '.ssh_port');
+        $remote_db_host =                   $this->rocketeer->getOption('remote.db.' . $connection . '.host');
+        $remote_db_user =                   $this->rocketeer->getOption('remote.db.' . $connection . '.user');
+        $remote_db_password =               $this->rocketeer->getOption('remote.db.' . $connection . '.password');
+        $remote_db_name =                   $this->rocketeer->getOption('remote.db.' . $connection . '.name');
+        $remote_db_backups_path =           $this->rocketeer->getOption('remote.db.' . $connection . '.backups_path');
+        $remote_login_user =                $this->rocketeer->getOption('config.connections.' . $connection . '.username');
+        $remote_login_connection_point =    $this->rocketeer->getOption('config.connections.' . $connection . '.host');
+        $divided_connection_point =         explode(":", $remote_login_connection_point);
+        $remote_login_host =                count($divided_connection_point) == 1 ? $remote_login_connection_point : $divided_connection_point[0];
+        $remote_login_port =                count($divided_connection_point) == 1 ? 22 : $divided_connection_point[1];
 
         $env = !empty($_SERVER['HOMEDRIVE']) ? 'windows' : 'linux';
         $homePath = '';

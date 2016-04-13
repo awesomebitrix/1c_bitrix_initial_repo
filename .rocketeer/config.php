@@ -40,9 +40,6 @@ return [
         'preprod' => [
             // this field may contain port so it's for ssh purposes
             'host'      => 'www.domain.xxx[:port]',
-            // this field should not contain port. ip address or hostname
-            'hostonly'  => 'www.domain.xxx',
-            'ssh_port'      => 22,
             'username'  => '',
             'password'  => '',
             'key'       => '',

@@ -19,18 +19,20 @@ class Databasepuller extends AbstractTask
         $local_db_name =                    $this->rocketeer->getOption('config.local.db.name');
         $local_db_backups_path =            $this->rocketeer->getOption('config.local.db.backups_path');
         $local_keep_backups =               $this->rocketeer->getOption('config.local.db.keep_backups');
-        $local_windows_dir_to_rsync_ssh =   $this->rocketeer->getOption('config.local.windows_dir_to_rsync_ssh');
+        $local_windows_dir_to_rsync =       $this->rocketeer->getOption('config.local.windows_dir_to_rsync');
 
-        $remote_db_host =           $this->rocketeer->getOption('remote.db.' . $connection . '.host');
-        $remote_db_user =           $this->rocketeer->getOption('remote.db.' . $connection . '.user');
-        $remote_db_password =       $this->rocketeer->getOption('remote.db.' . $connection . '.password');
-        $remote_db_name =           $this->rocketeer->getOption('remote.db.' . $connection . '.name');
-        $remote_db_backups_path =   $this->rocketeer->getOption('remote.db.' . $connection . '.backups_path');
-        $remote_login_user =        $this->rocketeer->getOption('config.connections.' . $connection . '.username');
-        $remote_login_host =        $this->rocketeer->getOption('config.connections.' . $connection . '.hostonly');
-        $remote_login_port =        $this->rocketeer->getOption('config.connections.' . $connection . '.ssh_port');
+        $remote_db_host =                   $this->rocketeer->getOption('remote.db.' . $connection . '.host');
+        $remote_db_user =                   $this->rocketeer->getOption('remote.db.' . $connection . '.user');
+        $remote_db_password =               $this->rocketeer->getOption('remote.db.' . $connection . '.password');
+        $remote_db_name =                   $this->rocketeer->getOption('remote.db.' . $connection . '.name');
+        $remote_db_backups_path =           $this->rocketeer->getOption('remote.db.' . $connection . '.backups_path');
+        $remote_login_user =                $this->rocketeer->getOption('config.connections.' . $connection . '.username');
+        $remote_login_connection_point =    $this->rocketeer->getOption('config.connections.' . $connection . '.host');
+        $divided_connection_point =         explode(":", $remote_login_connection_point);
+        $remote_login_host =                count($divided_connection_point) == 1 ? $remote_login_connection_point : $divided_connection_point[0];
+        $remote_login_port =                count($divided_connection_point) == 1 ? 22 : $divided_connection_point[1];
 
-        $root_directory = $this->paths->getHomeFolder() . $this->connections->getStage();
+        $root_directory =                   $this->paths->getHomeFolder() . $this->connections->getStage();
 
         $backup_prefix = $connection . '_';
         $backup_file_name = $backup_prefix . date("Y_m_d_H_i_s");
@@ -78,7 +80,7 @@ class Databasepuller extends AbstractTask
         $this->command->info($command);
         exec($command);
         $this->command->info("Getting backup from remote host to: " . $local_db_compressed_backup_file_path);
-        $command = "rsync -avz --rsh='{$local_windows_dir_to_rsync_ssh}ssh -p {$remote_login_port} -i {$private_key_path}' {$remote_login_user}@{$remote_login_host}:{$remote_db_compressed_backup_file_path} {$local_db_compressed_backup_file_path}";
+        $command = "rsync -avz --rsh='{$local_windows_dir_to_rsync}ssh -p {$remote_login_port} -i {$private_key_path}' {$remote_login_user}@{$remote_login_host}:{$remote_db_compressed_backup_file_path} {$local_db_compressed_backup_file_path}";
         exec($command);
 
         // remove old local backups
