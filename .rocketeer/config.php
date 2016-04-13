@@ -85,7 +85,7 @@ return [
     // options for database manipulations tasks
     'local' => [
         // for windows users only to fix ssh bug. so if u linux user leave this field empty. this string should end with slash
-        'windows_dir_to_rsync_ssh' => 'C:/Users/bfday/Cloud@Mail.Ru/Progs/Portable/cwRsync_5.5.0_x86_Free/bin/',
+        'windows_dir_to_rsync_ssh' => 'maintance/win_utils/cwRsync_5.5.0_x86_Free/bin/',
         'db' => [
             'host' => 'localhost',
             'user' => '',
