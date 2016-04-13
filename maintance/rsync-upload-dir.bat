@@ -1,2 +1,11 @@
-rsync -avz --rsh="ssh -p 22 -i %HOMEPATH%/.ssh/id_rsa" admin_ftp_11@89.253.226.187:/var/www/vhosts/intraceuticals.ru/httpdocs/shared/upload/ ../web/shared/upload/
+@echo off
+SET USER=vmebel
+SET HOST=victoria-mebel.crtweb.ru
+SET REMOTE_UPLOAD_DIR='./public_html/current/web/upload'
+SET LOCAL_DEST_DIR='../web/'
+SET SSH_PORT=7418
+SET PATH_TO_PRIVATE_KEY=%HOMEPATH%/.ssh/id_rsa
+SET RSYNC=win_utils\cwRsync_5.5.0_x86_Free\bin\rsync
+SET RSYNC_SSH=win_utils\cwRsync_5.5.0_x86_Free\bin\ssh
+%RSYNC% -avz --rsh="%RSYNC_SSH% -p %SSH_PORT% -i %PATH_TO_PRIVATE_KEY%" %USER%@%HOST%:%REMOTE_UPLOAD_DIR% %LOCAL_DEST_DIR%
 pause
