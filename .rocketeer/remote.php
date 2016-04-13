@@ -85,7 +85,7 @@ return [
             // relative to application directory backups path
             'backups_path' => 'shared/backups/db',
             // relative to application directory remote upload path
-            'upload_path' => 'shared/upload',
+            'upload_path' => 'shared/web/upload',
             'keep_backups' => 6,
         ]
     ]

@@ -7,7 +7,7 @@ return [
     // The name of the application to deploy
     // This will create a folder of the same name in the root directory
     // configured above, so be careful about the characters used
-    'application_name' => 'totaldict',
+    'application_name' => 'base',
 
     // Plugins
     ////////////////////////////////////////////////////////////////////
@@ -94,7 +94,7 @@ return [
             'user' => '',
             'password' => '',
             'name' => '',
-            'charset' => '',
+            'charset' => 'utf8mb4',
             'domain_name' => 'local-intraceuticals.ru',
             'mysql_path' => 'mysql',
             'mysqldump_path' => 'mysqldump',
