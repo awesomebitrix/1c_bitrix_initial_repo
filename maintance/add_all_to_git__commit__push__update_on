@@ -1,5 +1,5 @@
 #!/usr/bin/bash
 git add --all
-git commit -m "$1"
+git commit -m "$2"
 git push
-php rocketeer.phar update --on="$2"
+php rocketeer.phar update --on="$1"
