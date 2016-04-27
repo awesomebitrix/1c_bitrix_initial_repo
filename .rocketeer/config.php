@@ -30,14 +30,14 @@ return [
     ////////////////////////////////////////////////////////////////////
 
     // The default remote connection(s) to execute tasks on
-    'default'          => ['preprod'],
+    'default'          => ['dev'],
 
     // The various connections you defined
     // You can leave all of this empty or remove it entirely if you don't want
     // to track files with credentials : Rocketeer will prompt you for your credentials
     // and store them locally
     'connections'      => [
-        'preprod' => [
+        'dev' => [
             // this field may contain port so it's for ssh purposes
             'host'      => 'www.domain.xxx[:port]',
             'username'  => '',
