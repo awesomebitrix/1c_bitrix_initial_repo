@@ -77,7 +77,7 @@ return [
 
     // options for database manipulations tasks
     'db' => [
-        'production' => [
+        'prod' => [
             'host' => 'localhost',
             'user' => '',
             'password' => '',
